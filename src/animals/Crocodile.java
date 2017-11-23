@@ -1,5 +1,5 @@
 package animals;
 
 public class Crocodile extends Animals {
-    public Crocodile(){super(20,15);}
+    public Crocodile(){super(20,2);}
 }

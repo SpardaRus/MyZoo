@@ -1,18 +1,33 @@
 package animals;
 
+import needs.foods.Foods;
+
 public abstract class Animals {
-     public Animals(int NEED_FOOD, int NEED_SIZE) {
-          this.NEED_FOOD = NEED_FOOD;
-          this.NEED_SIZE = NEED_SIZE;
+     public Animals(int needFood,int ratioVisitors) {
+          this.needFood = needFood;
+          this.ratioVisitors = ratioVisitors;
+     }
+     static int feel=1;
+     static int needFood=1;
+     static int ratioVisitors=1;
+     static int visitors=1;
+
+     public static int getVisitors() {
+          return visitors;
      }
 
-     int NEED_FOOD;
-     int NEED_SIZE;
-     public int getNeedFood() {
-          return NEED_FOOD;
+     public static void calcVisitors(){
+          visitors =feel* ratioVisitors;
+
      }
-     public int getNeedSize() {
-          return NEED_SIZE;
+     public int getFeel() {
+          return feel;
+     }
+     public static int getNeedFood() {
+          return needFood;
+     }
+     public static void toEat(Foods foods){
+          feel+=foods.getFeel();
      }
 }
 
