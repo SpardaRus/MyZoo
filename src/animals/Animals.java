@@ -3,13 +3,13 @@ package animals;
 import needs.foods.Foods;
 
 public abstract class Animals {
-     public Animals(int needFood,int ratioVisitors) {
+     public Animals(int needFood,double ratioVisitors) {
           this.needFood = needFood;
           this.ratioVisitors = ratioVisitors;
      }
      static int feel=1;
      static int needFood=1;
-     static int ratioVisitors=1;
+     static double ratioVisitors=1;
      static int visitors=1;
 
      public static int getVisitors() {
@@ -18,7 +18,7 @@ public abstract class Animals {
 
      public static void calcVisitors(){
           if(feel* ratioVisitors>0){
-               visitors =feel* ratioVisitors;
+               visitors =(int)(feel* ratioVisitors);
           }else{
                visitors=1;
           }
