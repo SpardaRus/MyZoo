@@ -3,14 +3,20 @@ package animals;
 import needs.foods.Foods;
 
 public abstract class Animals {
-     public Animals(int needFood,double ratioVisitors) {
+     public Animals(int needFood,double ratioVisitors,int cost) {
           this.needFood = needFood;
           this.ratioVisitors = ratioVisitors;
+          this.cost=cost;
      }
      static int feel=1;
      static int needFood=1;
      static double ratioVisitors=1;
      static int visitors=1;
+     int cost=1;
+
+     public int getCost() {
+          return cost;
+     }
 
      public static int getVisitors() {
           return visitors;

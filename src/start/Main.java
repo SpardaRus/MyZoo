@@ -1,7 +1,7 @@
 package start;
 
 
-import tests.Test;
+import animals.*;
 
 public class Main {
     public static void main(String[] args) {

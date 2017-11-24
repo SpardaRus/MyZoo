@@ -16,30 +16,34 @@ public class Go {
         int n=0;
         while(v){
             System.out.println("Choose animal for add in you paddock");
+            System.out.println("You have "+Administrator.getMoney()+"$");
             for(int i=0;i<eArray.length;i++){
-                System.out.println(""+(i+1)+": "+eArray[i]);
+                System.out.println(""+(i+1)+": "+eArray[i]+
+                        ", cost: "+eArray[i].getAnimal().getCost()+"$");
             }
             switch (sc.nextInt()){
-                case 1: p.setAnimal(new Elephant()); n=1; v=false; break;
-                case 2: p.setAnimal(new Tiger()); n=2; v=false; break;
-                case 3: p.setAnimal(new Crocodile());n=3; v=false; break;
-                case 4: p.setAnimal(new Parrot()); n=4; v=false; break;
-                case 5: p.setAnimal(new Wolf()); n=5; v=false; break;
+                case 1: n=1; v=false; break;
+                case 2: n=2; v=false; break;
+                case 3: n=3; v=false; break;
+                case 4: n=4; v=false; break;
+                case 5: n=5; v=false; break;
             }
         }
         v=true;
         while(v){
-            System.out.println("Add the "+p.getAnimal().get(0).getClass().getSimpleName()+" again?");
+            System.out.println("You have "+Administrator.getMoney()+"$");
+            System.out.println("Add the "+eArray[n-1]+
+                    "?. Cost: "+eArray[n-1].getAnimal().getCost()+"$");
             System.out.println("1: Yes");
             System.out.println("2: No");
             switch (sc.nextInt()) {
                 case 1:
                     switch (n){
-                        case 1: p.setAnimal(new Elephant()); break;
-                        case 2: p.setAnimal(new Tiger()); break;
-                        case 3: p.setAnimal(new Crocodile());break;
-                        case 4: p.setAnimal(new Parrot()); break;
-                        case 5: p.setAnimal(new Wolf()); break;
+                        case 1: p.setAnimal(Administrator.byAnimals(new Elephant()));  break;
+                        case 2: p.setAnimal(Administrator.byAnimals(new Tiger())); break;
+                        case 3: p.setAnimal(Administrator.byAnimals(new Crocodile()));break;
+                        case 4: p.setAnimal(Administrator.byAnimals(new Parrot())); break;
+                        case 5: p.setAnimal(Administrator.byAnimals(new Wolf())); break;
                     }
                     break;
                 case 2: v=false; break;            }
@@ -53,7 +57,7 @@ public class Go {
         int i=0;
         while(initTest.getNeedFood()>nf){
             while(initTest.getAnimal().get(i).getNeedFood()>sut){
-                initTest.getAnimal().get(i).toEat(Administrator.payFood(f));
+                initTest.getAnimal().get(i).toEat(Administrator.byFood(f));
                 sut+=f.getSaturation();
             }
             i++;

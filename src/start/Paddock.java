@@ -16,7 +16,8 @@ public class Paddock{
         if(!animal.contains(ani)&&ani!=null){
             this.animal.add(ani);
         }else{
-            throw new IllegalArgumentException();
+           // throw new IllegalArgumentException("This object is contains");
+            System.out.println("This object is contains or null");
         }
     }
     public int getCostFood() {

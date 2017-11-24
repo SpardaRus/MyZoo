@@ -1,18 +1,37 @@
 package start;
 
+import animals.Animals;
 import needs.foods.Foods;
 
 public class Administrator {
-    private static int money=10;
+    private static int money=250;
     public static int getMoney() {
         return money;
     }
-    public static void pay(int m){
-        money-=m;
-    }
+    public static boolean pay(int m){
+        if(money-m<0){
+            return false;
+        }
+        else{
+            money-=m;
+            return true;
+        }
 
-    public static Foods payFood(Foods foods){
-        pay(foods.getCOST());
-        return foods;
+    }
+    public static Foods byFood(Foods foods){
+        if(pay(foods.getCOST())){
+            return foods;
+        }else{
+            return null;
+        }
+
+    }
+    public static Animals byAnimals(Animals animals){
+        if(pay(animals.getCost())){
+            return animals;
+        }else{
+            return null;
+        }
+
     }
 }
