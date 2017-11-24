@@ -17,7 +17,11 @@ public abstract class Animals {
      }
 
      public static void calcVisitors(){
-          visitors =feel* ratioVisitors;
+          if(feel* ratioVisitors>0){
+               visitors =feel* ratioVisitors;
+          }else{
+               visitors=1;
+          }
 
      }
      public int getFeel() {

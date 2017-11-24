@@ -4,7 +4,6 @@ import needs.foods.Foods;
 
 public class Administrator {
     private static int money=10;
-
     public static int getMoney() {
         return money;
     }

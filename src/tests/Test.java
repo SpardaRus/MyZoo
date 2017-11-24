@@ -56,13 +56,12 @@ public class Test {
                         case 5: p.setAnimal(new Wolf()); break;
                     }
                     break;
-                case 2: v=false; break;
-            }
+                case 2: v=false; break;            }
         }
         p.calcNeed();
         return p;
     }
-    public static void payAndFeel(Paddock initTest,Foods f){
+    public static void payAndEat(Paddock initTest, Foods f){
         int nf=0;
         int sut=0;
         int i=0;
@@ -74,9 +73,7 @@ public class Test {
             i++;
             nf+=sut;
             sut=0;
-
         }
-
     }
     public static void test(Paddock initTest){
         Scanner sc = new Scanner(System.in);
@@ -90,24 +87,23 @@ public class Test {
             for(int i=0;i<eArray.length;i++){
                 System.out.println(""+(i+1)+": "+eArray[i]);
             }
+            System.out.println("4: End");
             switch (sc.nextInt()){
                 case 1:
-                    payAndFeel(initTest, new BadFood());
+                    payAndEat(initTest, new BadFood());
                     break;
                 case 2:
-                    payAndFeel(initTest, new NormalFood());
+                    payAndEat(initTest, new NormalFood());
                     break;
                 case 3:
-                    payAndFeel(initTest, new ExcellentFood());
+                    payAndEat(initTest, new ExcellentFood());
                     break;
+                case 4:
+                    v=false; break;
             }
             Administrator.pay(-Visitors.pay()*initTest.getAnimal().size()*
                     initTest.getAnimal().get(0).getVisitors());
-            System.out.println("End ?");
-            System.out.println("1: Yes");
-            switch (sc.nextInt()) {
-                case 1: v=false; break;
-            }
+
         }
 
     }
