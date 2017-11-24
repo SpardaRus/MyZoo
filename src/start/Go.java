@@ -71,11 +71,12 @@ public class Go {
         boolean v=true;
         while (v){
             System.out.println();
-            Elephant.calcVisitors();
             Report.getReportOnePaddock(initTest);
             System.out.println("Need pay food, your choose is:");
             for(int i=0;i<eArray.length;i++){
-                System.out.println(""+(i+1)+": "+eArray[i]);
+                System.out.println(""+(i+1)+": "+eArray[i]+" cost: "+eArray[i].getFood().getCOST()+"$ "+
+                                    ", feel: "+eArray[i].getFood().getFeel()+
+                                    ", saturation: "+eArray[i].getFood().getSaturation());
             }
             System.out.println("4: End");
             switch (sc.nextInt()){

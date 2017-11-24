@@ -8,21 +8,21 @@ public abstract class Animals {
           this.ratioVisitors = ratioVisitors;
           this.cost=cost;
      }
-     static int feel=1;
-     static int needFood=1;
-     static double ratioVisitors=1;
-     static int visitors=1;
+     int feel=1;
+     int needFood=1;
+     double ratioVisitors=1;
+     int visitors=1;
      int cost=1;
 
      public int getCost() {
           return cost;
      }
 
-     public static int getVisitors() {
+     public int getVisitors() {
           return visitors;
      }
 
-     public static void calcVisitors(){
+     public void calcVisitors(){
           if(feel* ratioVisitors>0){
                visitors =(int)(feel* ratioVisitors);
           }else{
@@ -33,10 +33,10 @@ public abstract class Animals {
      public int getFeel() {
           return feel;
      }
-     public static int getNeedFood() {
+     public int getNeedFood() {
           return needFood;
      }
-     public static void toEat(Foods foods){
+     public void toEat(Foods foods){
           feel+=foods.getFeel();
      }
 }
