@@ -18,8 +18,12 @@ public class Go {
             System.out.println("Choose animal for add in you paddock");
             System.out.println("You have "+Administrator.getMoney()+"$");
             for(int i=0;i<eArray.length;i++){
-                System.out.println(""+(i+1)+": "+eArray[i]+
-                        ", cost: "+eArray[i].getAnimal().getCost()+"$");
+                System.out.print(""+(i+1)+": "+eArray[i]+",\t");
+                if(i==1||i==3||i==4){
+                    System.out.print("\t");
+                }
+                System.out.println("| cost: "+eArray[i].getAnimal().getCost()+"$");
+
             }
             switch (sc.nextInt()){
                 case 1: n=1; p.setAnimal(Administrator.byAnimals(new Elephant())); v=false;  break;
@@ -81,9 +85,16 @@ public class Go {
             Report.getReportOnePaddock(initTest);
             System.out.println("Need by food. Your choose is:");
             for(int i=0;i<eArray.length;i++){
-                System.out.println(""+(i+1)+": "+eArray[i]+" cost: "+eArray[i].getFood().getCOST()+"$ "+
-                                    ", feel: "+eArray[i].getFood().getFeel()+
-                                    ", saturation: "+eArray[i].getFood().getSaturation());
+                System.out.print(""+(i+1)+": "+eArray[i]);
+                if(i==0||i==1){
+                    System.out.print("\t");
+                }
+                if(i==0){
+                    System.out.print("\t");
+                }
+                System.out.println("\t| cost: "+eArray[i].getFood().getCOST()+"$ "+
+                                    "\t| feel: "+eArray[i].getFood().getFeel()+
+                                    "\t| saturation: "+eArray[i].getFood().getSaturation());
             }
             System.out.println("4: End");
             switch (sc.nextInt()){
