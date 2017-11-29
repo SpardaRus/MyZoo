@@ -24,11 +24,10 @@ public class Paddock{
         this.name = name;
     }
     public void calcNeed() {
-        for(Animals x:animal){
-            needFood+=x.getNeedFood();
-        }
+        needFood=animal.size()*animal.get(0).getNeedFood();
     }
     public int getNeedFood() {
+        calcNeed();
         return needFood;
     }
     private String name;
