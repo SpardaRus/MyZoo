@@ -3,17 +3,20 @@ package start;
 import animals.*;
 import needs.foods.*;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 
 public class Go {
-    public static Paddock initPaddock(){
+    public static Paddock initPaddock() throws ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter name your paddock");
         Paddock p=new Paddock();
         p.setName(""+sc.next());
         EnumAnimals[] eArray=EnumAnimals.values();
         boolean v=true;
-        int n=0;
+        int n=1;
+        String s=new Elephant().getClass().getName();
         while(v){
             System.out.println("Choose animal for add in you paddock");
             System.out.println("You have "+Administrator.getMoney()+"$");
@@ -26,41 +29,44 @@ public class Go {
 
             }
             switch (sc.nextInt()){
-                case 1: n=1; p.setAnimal(Administrator.byAnimals(new Elephant())); v=false;  break;
-                case 2: n=2; p.setAnimal(Administrator.byAnimals(new Tiger())); v=false;  break;
-                case 3: n=3; p.setAnimal(Administrator.byAnimals(new Crocodile())); v=false;  break;
-                case 4: n=4; p.setAnimal(Administrator.byAnimals(new Parrot())); v=false;  break;
-                case 5: n=5; p.setAnimal(Administrator.byAnimals(new Wolf())); v=false;  break;
+                case 1: n=1; s=new Elephant().getClass().getName();
+                p.setAnimal(Administrator.byAnimals(new Elephant())); v=false;  break;
+                case 2: n=2; s=new Tiger().getClass().getName();
+                p.setAnimal(Administrator.byAnimals(new Tiger())); v=false;  break;
+                case 3: n=3; s=new Crocodile().getClass().getName();
+                p.setAnimal(Administrator.byAnimals(new Crocodile())); v=false;  break;
+                case 4: n=4; s=new Parrot().getClass().getName();
+                p.setAnimal(Administrator.byAnimals(new Parrot())); v=false;  break;
+                case 5: n=5; s=new Wolf().getClass().getName();
+                p.setAnimal(Administrator.byAnimals(new Wolf())); v=false;  break;
             }
+
         }
+
         v=true;
         while(v){
             System.out.println("You have "+Administrator.getMoney()+"$");
             System.out.println("Add the "+eArray[n-1]+
                     "?. Cost: "+eArray[n-1].getAnimal().getCost()+"$");
-            System.out.println("1: Yes");
-            System.out.println("2: No");
+            System.out.print("1: Yes");
+            System.out.println("\t 2: No");
             switch (sc.nextInt()) {
                 case 1:
-                    switch (n){
-                        case 1: p.setAnimal(Administrator.byAnimals(new Elephant()));  break;
-                        case 2: p.setAnimal(Administrator.byAnimals(new Tiger())); break;
-                        case 3: p.setAnimal(Administrator.byAnimals(new Crocodile()));break;
-                        case 4: p.setAnimal(Administrator.byAnimals(new Parrot())); break;
-                        case 5: p.setAnimal(Administrator.byAnimals(new Wolf())); break;
-                    }
+
+                    byAnimal(Class.forName(s),p);
                     break;
                 case 2:
-                    if(p.getAnimal().get(0)==null){
-                        System.out.println("You must by animal");
-                    }else{
-                        v=false;
-                    }
+                    v=false;
                     break;
             }
         }
         p.calcNeed();
         return p;
+    }
+    public static void byAnimal(Class n,Paddock p) throws IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchMethodException {
+        Constructor<Animals> c=n.getDeclaredConstructor();
+        c.setAccessible(true);
+        p.setAnimal(Administrator.byAnimals(c.newInstance()));
     }
     public static void payAndEat(Paddock initTest, Foods f){
         int nf=0;
@@ -76,7 +82,7 @@ public class Go {
             sut=0;
         }
     }
-    public static void start(Paddock initTest){
+    public static void start(Paddock initTest) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         Scanner sc = new Scanner(System.in);
         EnumFoods[] eArray=EnumFoods.values();
         boolean v=true;
@@ -96,7 +102,8 @@ public class Go {
                                     "\t| feel: "+eArray[i].getFood().getFeel()+
                                     "\t| saturation: "+eArray[i].getFood().getSaturation());
             }
-            System.out.println("4: End");
+            System.out.println("4: By "+initTest.getAnimal().get(0).getClass().getSimpleName()+"?");
+            System.out.println("5: End");
             switch (sc.nextInt()){
                 case 1:
                     payAndEat(initTest, new BadFood());
@@ -114,6 +121,8 @@ public class Go {
                             initTest.getAnimal().get(0).getVisitors());
                     break;
                 case 4:
+                     byAnimal(initTest.getAnimal().get(0).getClass(),initTest);break;
+                case 5:
                     v=false; break;
             }
 

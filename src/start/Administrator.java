@@ -4,7 +4,7 @@ import animals.Animals;
 import needs.foods.Foods;
 
 public class Administrator {
-    private static int money=250;
+    private static int money=120;
     public static int getMoney() {
         return money;
     }
