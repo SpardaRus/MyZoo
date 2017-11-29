@@ -14,6 +14,10 @@ public abstract class Animals {
      int visitors=1;
      int cost=1;
 
+     public double getRatioVisitors() {
+          return ratioVisitors;
+     }
+
      public int getCost() {
           return cost;
      }

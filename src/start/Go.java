@@ -25,7 +25,9 @@ public class Go {
                 if(i==1||i==3||i==4){
                     System.out.print("\t");
                 }
-                System.out.println("| cost: "+eArray[i].getAnimal().getCost()+"$");
+                System.out.println("| cost: "+eArray[i].getAnimal().getCost()+"$ \t| need food: "
+                        +eArray[i].getAnimal().getNeedFood()+
+                        "\t| ratio visitor: "+eArray[i].getAnimal().getRatioVisitors());
 
             }
             switch (sc.nextInt()){
