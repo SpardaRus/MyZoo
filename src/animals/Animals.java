@@ -38,6 +38,7 @@ public abstract class Animals {
      }
      public void toEat(Foods foods){
           feel+=foods.getFeel();
+          calcVisitors();
      }
 }
 

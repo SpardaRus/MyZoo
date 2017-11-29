@@ -9,14 +9,8 @@ public class Administrator {
         return money;
     }
     public static boolean pay(int m){
-        if(money-m<0){
-            return false;
-        }
-        else{
             money-=m;
             return true;
-        }
-
     }
     public static Foods byFood(Foods foods){
         if(pay(foods.getCOST())){

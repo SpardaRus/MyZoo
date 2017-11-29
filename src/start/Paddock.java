@@ -1,7 +1,6 @@
 package start;
 
 import animals.Animals;
-import needs.foods.BadFood;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,17 +10,12 @@ public class Paddock{
     }
     private List<Animals> animal=new ArrayList<>();
     private int needFood;
-    private int costFood;
     public void setAnimal(Animals ani) {
         if(!animal.contains(ani)&&ani!=null){
             this.animal.add(ani);
         }else{
-           // throw new IllegalArgumentException("This object is contains");
             System.out.println("This object is contains or null");
         }
-    }
-    public int getCostFood() {
-        return costFood;
     }
     public String getName() {
         return name;

@@ -22,11 +22,11 @@ public class Go {
                         ", cost: "+eArray[i].getAnimal().getCost()+"$");
             }
             switch (sc.nextInt()){
-                case 1: n=1; v=false; break;
-                case 2: n=2; v=false; break;
-                case 3: n=3; v=false; break;
-                case 4: n=4; v=false; break;
-                case 5: n=5; v=false; break;
+                case 1: n=1; p.setAnimal(Administrator.byAnimals(new Elephant())); v=false;  break;
+                case 2: n=2; p.setAnimal(Administrator.byAnimals(new Tiger())); v=false;  break;
+                case 3: n=3; p.setAnimal(Administrator.byAnimals(new Crocodile())); v=false;  break;
+                case 4: n=4; p.setAnimal(Administrator.byAnimals(new Parrot())); v=false;  break;
+                case 5: n=5; p.setAnimal(Administrator.byAnimals(new Wolf())); v=false;  break;
             }
         }
         v=true;
@@ -46,7 +46,14 @@ public class Go {
                         case 5: p.setAnimal(Administrator.byAnimals(new Wolf())); break;
                     }
                     break;
-                case 2: v=false; break;            }
+                case 2:
+                    if(p.getAnimal().get(0)==null){
+                        System.out.println("You must by animal");
+                    }else{
+                        v=false;
+                    }
+                    break;
+            }
         }
         p.calcNeed();
         return p;
@@ -72,7 +79,7 @@ public class Go {
         while (v){
             System.out.println();
             Report.getReportOnePaddock(initTest);
-            System.out.println("Need pay food, your choose is:");
+            System.out.println("Need by food. Your choose is:");
             for(int i=0;i<eArray.length;i++){
                 System.out.println(""+(i+1)+": "+eArray[i]+" cost: "+eArray[i].getFood().getCOST()+"$ "+
                                     ", feel: "+eArray[i].getFood().getFeel()+
@@ -82,18 +89,23 @@ public class Go {
             switch (sc.nextInt()){
                 case 1:
                     payAndEat(initTest, new BadFood());
+                    Administrator.pay(-Visitors.pay()*initTest.getAnimal().size()*
+                            initTest.getAnimal().get(0).getVisitors());
                     break;
                 case 2:
                     payAndEat(initTest, new NormalFood());
+                    Administrator.pay(-Visitors.pay()*initTest.getAnimal().size()*
+                            initTest.getAnimal().get(0).getVisitors());
                     break;
                 case 3:
                     payAndEat(initTest, new ExcellentFood());
+                    Administrator.pay(-Visitors.pay()*initTest.getAnimal().size()*
+                            initTest.getAnimal().get(0).getVisitors());
                     break;
                 case 4:
                     v=false; break;
             }
-            Administrator.pay(-Visitors.pay()*initTest.getAnimal().size()*
-                    initTest.getAnimal().get(0).getVisitors());
+
 
         }
 
