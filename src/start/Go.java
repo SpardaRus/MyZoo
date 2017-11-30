@@ -79,13 +79,13 @@ public class Go {
             sut=0;
         }
     }
-    public static void start(Paddock initTest) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public static void start(Paddock paddock) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         Scanner sc = new Scanner(System.in);
         EnumFoods[] eArray=EnumFoods.values();
         boolean v=true;
         while (v){
             System.out.println();
-            Report.getReportOnePaddock(initTest);
+            Report.getReportOnePaddock(paddock);
             System.out.println("Need by food. Your choose is:");
             for(int i=0;i<eArray.length;i++){
                 System.out.print(""+(i+1)+": "+eArray[i]);
@@ -99,26 +99,26 @@ public class Go {
                                     "\t| feel: "+eArray[i].getFood().getFeel()+
                                     "\t| saturation: "+eArray[i].getFood().getSaturation());
             }
-            System.out.println("4: By "+initTest.getAnimal().get(0).getClass().getSimpleName()+"?");
+            System.out.println("4: By "+paddock.getAnimal().get(0).getClass().getSimpleName()+"?");
             System.out.println("5: End");
             switch (sc.nextInt()){
                 case 1:
-                    payAndEat(initTest, new BadFood());
-                    Administrator.pay(-Visitors.pay()*initTest.getAnimal().size()*
-                            initTest.getAnimal().get(0).getVisitors());
+                    payAndEat(paddock, new BadFood());
+                    Administrator.pay(-Visitors.pay()*paddock.getAnimal().size()*
+                            paddock.getAnimal().get(0).getVisitors());
                     break;
                 case 2:
-                    payAndEat(initTest, new NormalFood());
-                    Administrator.pay(-Visitors.pay()*initTest.getAnimal().size()*
-                            initTest.getAnimal().get(0).getVisitors());
+                    payAndEat(paddock, new NormalFood());
+                    Administrator.pay(-Visitors.pay()*paddock.getAnimal().size()*
+                            paddock.getAnimal().get(0).getVisitors());
                     break;
                 case 3:
-                    payAndEat(initTest, new ExcellentFood());
-                    Administrator.pay(-Visitors.pay()*initTest.getAnimal().size()*
-                            initTest.getAnimal().get(0).getVisitors());
+                    payAndEat(paddock, new ExcellentFood());
+                    Administrator.pay(-Visitors.pay()*paddock.getAnimal().size()*
+                            paddock.getAnimal().get(0).getVisitors());
                     break;
                 case 4:
-                     addAnimal(initTest.getAnimal().get(0).getClass(),initTest);break;
+                     addAnimal(paddock.getAnimal().get(0).getClass(),paddock);break;
                 case 5:
                     v=false; break;
             }
