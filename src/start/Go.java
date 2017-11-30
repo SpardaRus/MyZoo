@@ -44,6 +44,9 @@ public class Go {
         }
         v=true;
         while(v){
+           if(!isCheckMoney()){
+               break;
+           }
             System.out.println("You have "+Administrator.getMoney()+"$");
             System.out.println("Add the "+eArray[n-1]+
                     "?. Cost: "+eArray[n-1].getAnimal().getCost()+"$");
@@ -59,6 +62,18 @@ public class Go {
         }
         p.calcNeed();
         return p;
+    }
+    public static boolean isCheckMoney(){
+        if(Administrator.getMoney()>20000){
+            System.out.println("You Win\nBecause money > 20000$");
+            return false;
+        }
+        if(Administrator.getMoney()<-100){
+            System.out.println("You Lose\nBecause money < -100$");
+            return false;
+        }else{
+            return true;
+        }
     }
     public static void addAnimal(Class n, Paddock p) throws IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchMethodException {
         Constructor<Animals> c=n.getDeclaredConstructor();
@@ -84,6 +99,9 @@ public class Go {
         EnumFoods[] eArray=EnumFoods.values();
         boolean v=true;
         while (v){
+            if(!isCheckMoney()){
+                break;
+            }
             System.out.println();
             Report.getReportOnePaddock(paddock);
             System.out.println("Need by food. Your choose is:");
