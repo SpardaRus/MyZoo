@@ -28,34 +28,29 @@ public class Go {
                 System.out.println("| cost: "+eArray[i].getAnimal().getCost()+"$ \t| need food: "
                         +eArray[i].getAnimal().getNeedFood()+
                         "\t| ratio visitor: "+eArray[i].getAnimal().getRatioVisitors());
-
             }
             switch (sc.nextInt()){
                 case 1: n=1; s=new Elephant().getClass().getName();
-                p.setAnimal(Administrator.byAnimals(new Elephant())); v=false;  break;
+                    p.setAnimal(Administrator.byAnimals(new Elephant())); v=false; break;
                 case 2: n=2; s=new Tiger().getClass().getName();
-                p.setAnimal(Administrator.byAnimals(new Tiger())); v=false;  break;
+                    p.setAnimal(Administrator.byAnimals(new Tiger())); v=false; break;
                 case 3: n=3; s=new Crocodile().getClass().getName();
-                p.setAnimal(Administrator.byAnimals(new Crocodile())); v=false;  break;
+                    p.setAnimal(Administrator.byAnimals(new Crocodile())); v=false; break;
                 case 4: n=4; s=new Parrot().getClass().getName();
-                p.setAnimal(Administrator.byAnimals(new Parrot())); v=false;  break;
+                    p.setAnimal(Administrator.byAnimals(new Parrot())); v=false; break;
                 case 5: n=5; s=new Wolf().getClass().getName();
-                p.setAnimal(Administrator.byAnimals(new Wolf())); v=false;  break;
+                    p.setAnimal(Administrator.byAnimals(new Wolf())); v=false; break;
             }
-
         }
-
         v=true;
         while(v){
             System.out.println("You have "+Administrator.getMoney()+"$");
             System.out.println("Add the "+eArray[n-1]+
                     "?. Cost: "+eArray[n-1].getAnimal().getCost()+"$");
-            System.out.print("1: Yes");
-            System.out.println("\t 2: No");
+            System.out.println("1: Yes\t 2: No");
             switch (sc.nextInt()) {
                 case 1:
-
-                    byAnimal(Class.forName(s),p);
+                    addAnimal(Class.forName(s),p);
                     break;
                 case 2:
                     v=false;
@@ -65,7 +60,7 @@ public class Go {
         p.calcNeed();
         return p;
     }
-    public static void byAnimal(Class n,Paddock p) throws IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchMethodException {
+    public static void addAnimal(Class n, Paddock p) throws IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchMethodException {
         Constructor<Animals> c=n.getDeclaredConstructor();
         c.setAccessible(true);
         p.setAnimal(Administrator.byAnimals(c.newInstance()));
@@ -123,13 +118,10 @@ public class Go {
                             initTest.getAnimal().get(0).getVisitors());
                     break;
                 case 4:
-                     byAnimal(initTest.getAnimal().get(0).getClass(),initTest);break;
+                     addAnimal(initTest.getAnimal().get(0).getClass(),initTest);break;
                 case 5:
                     v=false; break;
             }
-
-
         }
-
     }
 }
