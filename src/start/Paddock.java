@@ -1,6 +1,9 @@
 package start;
 
 import animals.Animals;
+import needs.foods.BadFood;
+import needs.foods.Foods;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +13,16 @@ public class Paddock{
     }
     private List<Animals> animal=new ArrayList<>();
     private int needFood;
+
+    public Foods getFoods() {
+        return foods;
+    }
+
+    public void setFoods(Foods foods) {
+        this.foods = foods;
+    }
+
+    private Foods foods=new BadFood();
     public void setAnimal(Animals ani) {
         if(!animal.contains(ani)&&ani!=null){
             this.animal.add(ani);
@@ -31,4 +44,9 @@ public class Paddock{
         return needFood;
     }
     private String name;
+
+    @Override
+    public String toString() {
+        return  "name='" + name + "'";
+    }
 }

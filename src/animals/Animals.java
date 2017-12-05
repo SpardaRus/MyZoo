@@ -44,6 +44,11 @@ public abstract class Animals {
           feel+=foods.getFeel();
           calcVisitors();
      }
+
+     @Override
+     public String toString() {
+          return ""+this.getClass().getSimpleName();
+     }
 }
 
 

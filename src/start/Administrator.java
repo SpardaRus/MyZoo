@@ -4,7 +4,7 @@ import animals.Animals;
 import needs.foods.Foods;
 
 public class Administrator {
-    private static int money=120;
+    private static int money=220;
     public static int getMoney() {
         return money;
     }
@@ -12,7 +12,7 @@ public class Administrator {
             money-=m;
             return true;
     }
-    public static Foods byFood(Foods foods){
+    public static Foods buyFood(Foods foods){
         if(pay(foods.getCOST())){
             return foods;
         }else{
@@ -20,7 +20,7 @@ public class Administrator {
         }
 
     }
-    public static Animals byAnimals(Animals animals){
+    public static Animals buyAnimals(Animals animals){
         if(pay(animals.getCost())){
             return animals;
         }else{
