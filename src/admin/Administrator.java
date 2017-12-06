@@ -1,9 +1,10 @@
-package start;
+package admin;
 
 import animals.Animals;
 import needs.foods.Foods;
 
 public class Administrator {
+    static BuyInterface buy=new SimpleBuy();
     private static int money=220;
     public static int getMoney() {
         return money;
@@ -13,19 +14,9 @@ public class Administrator {
             return true;
     }
     public static Foods buyFood(Foods foods){
-        if(pay(foods.getCOST())){
-            return foods;
-        }else{
-            return null;
-        }
-
+        return buy.buyFood(foods);
     }
     public static Animals buyAnimals(Animals animals){
-        if(pay(animals.getCost())){
-            return animals;
-        }else{
-            return null;
-        }
-
+        return buy.buyAnimals(animals);
     }
 }

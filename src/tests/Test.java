@@ -1,7 +1,7 @@
 package tests;
 
 import animals.*;
-import start.Paddock;
+import paddock.Paddock;
 
 public class Test {
     public static Paddock initTest1(){

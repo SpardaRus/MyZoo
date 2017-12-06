@@ -1,4 +1,4 @@
-package start;
+package paddock;
 
 import animals.Animals;
 import needs.foods.BadFood;

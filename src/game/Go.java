@@ -1,7 +1,10 @@
-package start;
+package game;
 
+import admin.Administrator;
 import animals.*;
 import needs.foods.*;
+import paddock.Paddock;
+import visitors.Visitors;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

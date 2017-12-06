@@ -1,4 +1,4 @@
-package start;
+package visitors;
 
 public class Visitors {
     private static final int pay=1;
