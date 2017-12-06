@@ -92,7 +92,7 @@ public class Go {
             return false;
         }
         if (Administrator.getMoney() < 0) {
-            System.out.println("You Lose\nBecause money < 0A$");
+            System.out.println("You Lose\nBecause money < 0$");
             return false;
         } else {
             return true;
@@ -119,86 +119,99 @@ public class Go {
             sut = 0;
         }
     }
-    public static int getMoneyFood(Paddock p){
-        int money=0;
-        for(int i=0;i<p.getAnimal().size();i++){
-            money+=(p.getAnimal().get(0).getNeedFood())/p.getFoods().getSaturation()*
+
+    public static int getMoneyFood(Paddock p) {
+        int money = 0;
+        for (int i = 0; i < p.getAnimal().size(); i++) {
+            money += (p.getAnimal().get(0).getNeedFood()) / p.getFoods().getSaturation() *
                     p.getFoods().getCOST();
-            if(p.getAnimal().get(0).getNeedFood()%p.getFoods().getSaturation()>0){
-                money+=p.getFoods().getCOST();
+            if (p.getAnimal().get(0).getNeedFood() % p.getFoods().getSaturation() > 0) {
+                money += p.getFoods().getCOST();
             }
         }
         return money;
     }
-    public static int getMoneyVistors(Paddock p){
-        int money=0;
-        money=p.getAnimal().get(0).getVisitors()*Visitors.getPay()*p.getAnimal().size();
+
+    public static int getMoneyVistors(Paddock p) {
+        int money = 0;
+        money = p.getAnimal().get(0).getVisitors() * Visitors.getPay() * p.getAnimal().size();
         return money;
     }
+
     public static void startGame() {
         List<Paddock> paddocks = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         boolean v = true;
-        int money=Administrator.getMoney();
+        int money = Administrator.getMoney();
         while (v) {
             if (!isCheckMoney()) {
                 break;
             }
             System.out.println("You have " + Administrator.getMoney() + "$");
-            if(paddocks.size()==0){
+            if (paddocks.size() == 0) {
                 System.out.println("You have't paddock");
-            }else{
-                System.out.println("You have: "+paddocks.size()+" paddock");
-                System.out.println("Day of money: "+(Administrator.getMoney()-money));
+            } else {
+                System.out.println("You have: " + paddocks.size() + " paddock");
+                System.out.println("Day of money: " + (Administrator.getMoney() - money));
 
-                for(Paddock x:paddocks){
-                    System.out.println((paddocks.indexOf(x)+1)+": "+x+", "+x.getAnimal().get(0)+": "
-                            +(x.getAnimal().size())+", Visitors: "+x.getAnimal().get(0).getVisitors()*x.getAnimal().size()+", " +
-                            "Feel: "+(x.getAnimal().get(0).getFeel()*x.getAnimal().size())+
-                            "\n\tDay of money: "+getMoneyVistors(x)+
-                            "$, Cost food: "+getMoneyFood(x)+"$");
+                for (Paddock x : paddocks) {
+                    System.out.println((paddocks.indexOf(x) + 1) + ": " + x + ", " + x.getAnimal().get(0) + ": "
+                            + (x.getAnimal().size()) + ", Visitors: " + x.getAnimal().get(0).getVisitors() * x.getAnimal().size() + ", " +
+                            "Feel: " + (x.getAnimal().get(0).getFeel() * x.getAnimal().size()) +
+                            "\n\tDay of money: " + getMoneyVistors(x) +
+                            "$, Cost food: " + getMoneyFood(x) + "$");
                 }
             }
             System.out.println("A: Add the paddock");
             System.out.println("N: Next day");
             System.out.println("End: End the game");
+            String console = sc.next();
+            try {
+                Integer ind=Integer.parseInt(console);
+                if (ind>=0&&ind<=paddocks.size()){
+                    startPaddock(paddocks.get(Integer.parseInt(console)-1));
+                }
+            }catch (Exception e){
 
-            switch (sc.next()) {
-                case "A":
-                    try {
-                        Paddock p=initPaddock();
-                        paddocks.add(p);
-                        startPaddock(p);
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
-                    } catch (NoSuchMethodException e) {
-                        e.printStackTrace();
-                    } catch (InstantiationException e) {
-                        e.printStackTrace();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                case "N":
-                    money=Administrator.getMoney();
-                    endDay(paddocks);
-                    break;
-                case "End":
-                    v = false;
-                    break;
             }
+                switch (console) {
+                    case "A":
+                        try {
+                            Paddock p = initPaddock();
+                            paddocks.add(p);
+                            startPaddock(p);
+                        } catch (InvocationTargetException e) {
+                            e.printStackTrace();
+                        } catch (NoSuchMethodException e) {
+                            e.printStackTrace();
+                        } catch (InstantiationException e) {
+                            e.printStackTrace();
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case "N":
+                        money = Administrator.getMoney();
+                        endDay(paddocks);
+                        break;
+                    case "End":
+                        v = false;
+                        break;
+                }
+
         }
 
 
     }
-    public static void endDay(List<Paddock> paddocks){
-       for(Paddock p:paddocks){
-           payAndEat(p, p.getFoods());
-           Administrator.pay(-Visitors.pay() * p.getAnimal().size() *
-                p.getAnimal().get(0).getVisitors());
-       }
+
+    public static void endDay(List<Paddock> paddocks) {
+        for (Paddock p : paddocks) {
+            payAndEat(p, p.getFoods());
+            Administrator.pay(-Visitors.pay() * p.getAnimal().size() *
+                    p.getAnimal().get(0).getVisitors());
+        }
     }
 
     public static void startPaddock(Paddock paddock) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
