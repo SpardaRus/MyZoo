@@ -14,7 +14,7 @@ public class SimpleBuy implements BuyInterface {
     }
 
     @Override
-    public Animals buyAnimals(Animals animals) {
+    public Animals buyAnimals(Animals animals){
         if(Administrator.getInstance().pay(animals.getCost())){
             return animals;
         }else{

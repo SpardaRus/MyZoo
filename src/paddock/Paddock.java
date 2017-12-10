@@ -33,10 +33,10 @@ public class Paddock<T extends Animals>{
         return animal;
     }
     public void setAnimal(T ani) {
-        if(!animal.contains(ani)&&ani!=null){
+        if(ani!=null){
             animal.add((ani));
         }else{
-            System.out.println("This object is contains or null");
+            System.out.println("This object is null");
         }
     }
     public T getOneAnimal(){

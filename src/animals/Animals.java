@@ -41,8 +41,8 @@ public class Animals {
           return needFood;
      }
      public void toEat(Foods foods){
-          feel+=foods.getFeel();
-          calcVisitors();
+               feel += foods.getFeel();
+               calcVisitors();
      }
 
 }

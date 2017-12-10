@@ -27,6 +27,9 @@ public class Go {
         System.out.println("Please enter name your paddock");
         p.setName("" + sc.next());
         while (v) {
+            if(!adm.isCheckMoney()){
+                break;
+            }
                 System.out.println("Choose animal for add in you paddock");
                 try {
                     System.out.println("You have " + admMoney + "$");
@@ -56,6 +59,9 @@ public class Go {
         }
         v = true;
         while (v) {
+            if(!adm.isCheckMoney()){
+                break;
+            }
             System.out.println("You have " + adm.getMoney() + "$");
             System.out.println("Add the " + eArray[n - 1] +
                     "?. Cost: " + eArray[n - 1].getAnimal().getCost() + "$");
@@ -84,7 +90,7 @@ public class Go {
         int sut = 0;
         int i = 0;
         while (initTest.getNeedFood() >= nf) {
-            while (initTest.getOneAnimal().getNeedFood() >= sut) {
+            while (initTest.getIndexAnimal(i).getNeedFood() >= sut) {
                 initTest.getIndexAnimal(i).toEat(adm.buyFood(f));
                 sut += f.getSaturation();
             }
@@ -116,6 +122,9 @@ public class Go {
         boolean v = true;
         int money = adm.getMoney();
         while (v) {
+            if(!adm.isCheckMoney()){
+                break;
+            }
             System.out.println("You have " + adm.getMoney() + "$");
             if (paddocks.size() == 0) {
                 System.out.println("You have't paddock");
@@ -124,8 +133,9 @@ public class Go {
                 System.out.println("Day of money: " + (adm.getMoney() - money));
 
                 for (Paddock x : paddocks) {
-                    System.out.println((paddocks.indexOf(x) + 1) + ": " + x + ", " + x.getAnimal().get(0) + ": "
-                            + (x.getAnimal().size()) + ", Visitors: " + x.getOneAnimal().getVisitors() * x.getAnimal().size() + ", " +
+                    System.out.println((paddocks.indexOf(x) + 1) + ": " + x + ", " + x.getTypeAnimals() + ": "
+                            + (x.getAnimal().size()) + ", Visitors: " + x.getOneAnimal().getVisitors() *
+                            x.getAnimal().size() + ", " +
                             "Feel: " + (x.getOneAnimal().getFeel() * x.getAnimal().size()) +
                             "\n\tDay of money: " + getMoneyVistors(x) +
                             "$, Cost food: " + getMoneyFood(x) + "$");
@@ -177,6 +187,9 @@ public class Go {
         EnumFoods[] eArray = EnumFoods.values();
         boolean v = true;
         while (v) {
+            if(!adm.isCheckMoney()){
+                break;
+            }
             Report.getReportOnePaddock(paddock);
             System.out.println("Need by food. Your choose is:");
             for (int i = 0; i < eArray.length; i++) {
@@ -191,7 +204,7 @@ public class Go {
                         "\t| feel: " + eArray[i].getFood().getFeel() +
                         "\t| saturation: " + eArray[i].getFood().getSaturation());
             }
-            System.out.println("4: By " + paddock.getAnimal().get(0).getClass().getSimpleName() + "?");
+            System.out.println("4: By " + paddock.getTypeAnimals() + "?");
             System.out.println("5: Back");
             switch (sc.nextInt()) {
                 case 1:

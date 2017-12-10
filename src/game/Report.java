@@ -12,7 +12,7 @@ public class Report {
                 +paddock.getTypeAnimals());
         System.out.println(", money = "+ adm.getMoney()+"$");
         System.out.print("Need food = "+paddock.getNeedFood());
-        System.out.print("\t| Feel "+paddock.getAnimal().get(0).getClass().getSimpleName()+" = "
+        System.out.print("\t| Feel "+paddock.getTypeAnimals()+" = "
                 +paddock.getOneAnimal().getFeel());
         System.out.println("\t| Visitors = "+paddock.getOneAnimal().getVisitors()*paddock.getAnimal().size());
     }
