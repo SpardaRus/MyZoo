@@ -4,19 +4,47 @@ import animals.Animals;
 import needs.foods.Foods;
 
 public class Administrator {
-    static BuyInterface buy=new SimpleBuy();
-    private static int money=220;
-    public static int getMoney() {
+    private Administrator(BuyInterface buyC){
+        buy=buyC;
+    }
+    private static Administrator instance=new Administrator(new SimpleBuy());
+    public static Administrator getInstance(){
+        return instance;
+    }
+    private BuyInterface buy;
+    private int money=350;
+    @GetMoney(EMoney.SIMPLE)
+    public int getMoney() {
         return money;
     }
-    public static boolean pay(int m){
-            money-=m;
-            return true;
+    @GetMoney(EMoney.WithNDS)
+    public int getMoneyNDS() {
+         money-=18;
+        return money;
     }
-    public static Foods buyFood(Foods foods){
+    public boolean isCheckMoney() {
+        if (getInstance().getMoney() > 20000) {
+            System.out.println("You Win\nBecause money > 20000$");
+            return false;
+        }
+        if (getInstance().getMoney() < 0) {
+            System.out.println("You Lose\nBecause money < 0$");
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public boolean pay(int m){
+        if(isCheckMoney()){
+            money-=m;
+            return isCheckMoney();
+        }
+        return isCheckMoney();
+    }
+    public Foods buyFood(Foods foods){
         return buy.buyFood(foods);
     }
-    public static Animals buyAnimals(Animals animals){
+    public Animals buyAnimals(Animals animals){
         return buy.buyAnimals(animals);
     }
 }

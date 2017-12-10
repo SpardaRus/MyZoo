@@ -3,12 +3,10 @@ package admin;
 import animals.Animals;
 import needs.foods.Foods;
 
-import static admin.Administrator.pay;
-
 public class SimpleBuy implements BuyInterface {
     @Override
     public Foods buyFood(Foods foods) {
-        if(pay(foods.getCOST())){
+        if(Administrator.getInstance().pay(foods.getCOST())){
             return foods;
         }else{
             return null;
@@ -17,7 +15,7 @@ public class SimpleBuy implements BuyInterface {
 
     @Override
     public Animals buyAnimals(Animals animals) {
-        if(pay(animals.getCost())){
+        if(Administrator.getInstance().pay(animals.getCost())){
             return animals;
         }else{
             return null;

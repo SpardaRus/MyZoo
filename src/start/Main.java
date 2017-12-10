@@ -7,7 +7,7 @@ public class Main {
         System.out.println("Start");
         System.out.println();
 
-            Go.startGame();
+        Go.startGame();
 
         System.out.println();
         System.out.println("End");

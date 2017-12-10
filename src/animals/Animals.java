@@ -2,17 +2,17 @@ package animals;
 
 import needs.foods.Foods;
 
-public abstract class Animals {
+public class Animals {
      public Animals(int needFood,double ratioVisitors,int cost) {
           this.needFood = needFood;
           this.ratioVisitors = ratioVisitors;
           this.cost=cost;
      }
-     int feel=1;
-     int needFood=1;
-     double ratioVisitors=1;
-     int visitors=1;
-     int cost=1;
+     int feel;
+     int needFood;
+     double ratioVisitors;
+     int visitors;
+     int cost;
 
      public double getRatioVisitors() {
           return ratioVisitors;
@@ -45,10 +45,6 @@ public abstract class Animals {
           calcVisitors();
      }
 
-     @Override
-     public String toString() {
-          return ""+this.getClass().getSimpleName();
-     }
 }
 
 
