@@ -1,5 +1,8 @@
 package com.github.spardarus.myzoo.foods;
 
+/**
+ * List of foods
+ */
 public enum EnumFoods {
     BAD_FOOD(-10, 20, 10),
     NORMAL_FOOD(1, 20, 30),

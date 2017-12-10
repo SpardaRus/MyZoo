@@ -12,8 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Logic games
+ */
 public class Go {
     public static Administrator adm=Administrator.getInstance();
+
+    /**
+     * Create a new paddock
+     * @return new paddock
+     * @throws Exception
+     */
     public static Paddock initPaddock() throws Exception {
         Scanner sc = new Scanner(System.in);
         Paddock p = new Paddock();
@@ -48,7 +57,7 @@ public class Go {
                 Integer ind=Integer.parseInt(console);
                 if (ind>0&&ind<=eArray.length){
                     n = ind;
-                    p.setAnimal(adm.buyAnimals(eArray[ind-1].getAnimal()));
+                    p.addAnimal(adm.buyAnimals(eArray[ind-1].getAnimal()));
                     p.setTypeAnimals(eArray[ind-1]);
                     v = false;
                 }
@@ -78,11 +87,21 @@ public class Go {
     }
 
 
-
+    /**
+     * Adding an animal into the paddock
+     * @param n Type of animal
+     * @param p paddock
+     * @throws Exception
+     */
     public static void addAnimal(EnumAnimals n, Paddock p) throws Exception {
-        p.setAnimal(adm.buyAnimals(n.getAnimal()));
+        p.addAnimal(adm.buyAnimals(n.getAnimal()));
     }
 
+    /**
+     * Buying and feeding animals
+     * @param initTest Paddock
+     * @param f Type of foods
+     */
     public static void payAndEat(Paddock initTest, Foods f) {
         int nf = 0;
         int sut = 0;
@@ -98,6 +117,11 @@ public class Go {
         }
     }
 
+    /**
+     * Count money to pay for food in the paddock
+     * @param p Paddock
+     * @return Money to pay for food in the paddock
+     */
     public static int getMoneyFood(Paddock p) {
         int money = 0;
         for (Object i:p.getAnimal()) {
@@ -110,10 +134,18 @@ public class Go {
         return money;
     }
 
+    /**
+     * The count arrived in the paddock
+     * @param p Paddock
+     * @return Arrived in the paddock
+     */
     public static int getMoneyVistors(Paddock p) {
       return p.getOneAnimal().getVisitors() * Visitors.pay() * p.getAnimal().size();
     }
 
+    /**
+     * The main menu of the game
+     */
     public static void startGame() {
         List<Paddock> paddocks = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
@@ -172,6 +204,10 @@ public class Go {
         }
     }
 
+    /**
+     * Summing up the day
+     * @param paddocks List paddock
+     */
     public static void endDay(List<Paddock> paddocks) {
         for (Paddock p : paddocks) {
             payAndEat(p, p.getFoods());
@@ -180,6 +216,11 @@ public class Go {
         }
     }
 
+    /**
+     * Setting the paddock
+     * @param paddock Paddock
+     * @throws Exception
+     */
     public static void startPaddock(Paddock paddock) throws Exception {
         Scanner sc = new Scanner(System.in);
         EnumFoods[] eArray = EnumFoods.values();

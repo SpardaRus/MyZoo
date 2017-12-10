@@ -2,7 +2,16 @@ package com.github.spardarus.myzoo.admin;
 
 import java.lang.reflect.Method;
 
+/**
+ * The choice of method money
+ */
 public class ChooseMoney {
+    /**
+     * Reflective call to a method marked with the annotation, the dependence of its argument.
+     * @param em annotation argument
+     * @return money
+     * @throws Exception
+     */
     public int chooseMoney(EMoney em) throws Exception {
         String pack="com.github.spardarus.myzoo.admin.Administrator";
         Class cl=Class.forName(pack);
