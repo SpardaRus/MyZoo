@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"com.github.spardarus.myzoo.admin"},{"l":"com.github.spardarus.myzoo.animals"},{"l":"com.github.spardarus.myzoo.foods"},{"l":"com.github.spardarus.myzoo.game"},{"l":"com.github.spardarus.myzoo.paddock"},{"l":"com.github.spardarus.myzoo.start"},{"l":"com.github.spardarus.myzoo.visitors"}]
