@@ -1,15 +1,13 @@
-package game;
+package com.github.spardarus.myzoo.game;
 
-import admin.Administrator;
-import admin.ChooseMoney;
-import admin.EMoney;
-import animals.*;
-import needs.foods.*;
-import paddock.Paddock;
-import visitors.Visitors;
+import com.github.spardarus.myzoo.admin.Administrator;
+import com.github.spardarus.myzoo.admin.ChooseMoney;
+import com.github.spardarus.myzoo.admin.EMoney;
+import com.github.spardarus.myzoo.animals.*;
+import com.github.spardarus.myzoo.foods.*;
+import com.github.spardarus.myzoo.paddock.Paddock;
+import com.github.spardarus.myzoo.visitors.Visitors;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -102,18 +100,18 @@ public class Go {
 
     public static int getMoneyFood(Paddock p) {
         int money = 0;
-        for (int i = 0; i < p.getAnimal().size(); i++) {
+        for (Object i:p.getAnimal()) {
             money += (p.getOneAnimal().getNeedFood()) / p.getFoods().getSaturation() *
-                    p.getFoods().getCOST();
+                    p.getFoods().getCost();
             if (p.getOneAnimal().getNeedFood() % p.getFoods().getSaturation() > 0) {
-                money += p.getFoods().getCOST();
+                money += p.getFoods().getCost();
             }
         }
         return money;
     }
 
     public static int getMoneyVistors(Paddock p) {
-      return p.getOneAnimal().getVisitors() * Visitors.getPay() * p.getAnimal().size();
+      return p.getOneAnimal().getVisitors() * Visitors.pay() * p.getAnimal().size();
     }
 
     public static void startGame() {
@@ -200,28 +198,33 @@ public class Go {
                 if (i == 0) {
                     System.out.print("\t");
                 }
-                System.out.println("\t| cost: " + eArray[i].getFood().getCOST() + "$ " +
+                System.out.println("\t| cost: " + eArray[i].getFood().getCost() + "$ " +
                         "\t| feel: " + eArray[i].getFood().getFeel() +
                         "\t| saturation: " + eArray[i].getFood().getSaturation());
             }
-            System.out.println("4: By " + paddock.getTypeAnimals() + "?");
-            System.out.println("5: Back");
-            switch (sc.nextInt()) {
-                case 1:
-                    paddock.setFoods(new BadFood());
-                    break;
-                case 2:
-                    paddock.setFoods(new NormalFood());
-                    break;
-                case 3:
-                    paddock.setFoods(new ExcellentFood());
-                    break;
-                case 4:
-                    addAnimal(paddock.getTypeAnimals(), paddock);
-                    break;
-                case 5:
-                    v = false;
-                    break;
+            System.out.println(""+(eArray.length+1)+": By " + paddock.getTypeAnimals() + "?");
+            System.out.println(""+(eArray.length+2)+": Back");
+            String console = sc.next();
+            try {
+                Integer ind=Integer.parseInt(console);
+                if(ind>0){
+                    if (ind<=eArray.length){
+                        paddock.setFoods(eArray[ind-1].getFood());
+                    }else{
+                        if(ind<=eArray.length+1){
+                            addAnimal(paddock.getTypeAnimals(), paddock);
+                        }else{
+                            if(ind<=eArray.length+2){
+                                v = false;
+                            }
+                        }
+
+                    }
+                }
+
+
+            }catch (Exception e){
+
             }
         }
     }

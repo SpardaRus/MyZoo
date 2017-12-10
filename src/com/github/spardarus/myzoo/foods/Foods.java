@@ -1,13 +1,13 @@
-package needs.foods;
+package com.github.spardarus.myzoo.foods;
 
-public abstract class Foods {
+public class Foods {
     int feel;
     int saturation;
     int cost;
     public int getFeel() {
         return feel;
     }
-    public int getCOST() {
+    public int getCost() {
         return cost;
     }
     public int getSaturation() {

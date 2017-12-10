@@ -1,12 +1,12 @@
-package admin;
+package com.github.spardarus.myzoo.admin;
 
-import animals.Animals;
-import needs.foods.Foods;
+import com.github.spardarus.myzoo.animals.Animals;
+import com.github.spardarus.myzoo.foods.Foods;
 
 public class SimpleBuy implements BuyInterface {
     @Override
     public Foods buyFood(Foods foods) {
-        if(Administrator.getInstance().pay(foods.getCOST())){
+        if(Administrator.getInstance().pay(foods.getCost())){
             return foods;
         }else{
             return null;

@@ -1,9 +1,9 @@
-package paddock;
+package com.github.spardarus.myzoo.paddock;
 
-import animals.Animals;
-import animals.EnumAnimals;
-import needs.foods.BadFood;
-import needs.foods.Foods;
+import com.github.spardarus.myzoo.animals.Animals;
+import com.github.spardarus.myzoo.animals.EnumAnimals;
+import com.github.spardarus.myzoo.foods.EnumFoods;
+import com.github.spardarus.myzoo.foods.Foods;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class Paddock<T extends Animals>{
 
     private List<T> animal=new ArrayList<>();
     private int needFood;
-    private Foods foods=new BadFood();
+    private Foods foods= EnumFoods.BAD_FOOD.getFood();
     private String name;
     private EnumAnimals typeAnimals;
 

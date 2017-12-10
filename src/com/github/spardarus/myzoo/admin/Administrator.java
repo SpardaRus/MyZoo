@@ -1,8 +1,11 @@
-package admin;
+package com.github.spardarus.myzoo.admin;
 
-import animals.Animals;
-import needs.foods.Foods;
+import com.github.spardarus.myzoo.animals.Animals;
+import com.github.spardarus.myzoo.foods.Foods;
 
+/**
+ * Designed for shopping
+ */
 public class Administrator {
     private Administrator(BuyInterface buyC){
         buy=buyC;
@@ -17,7 +20,7 @@ public class Administrator {
     public int getMoney() {
         return money;
     }
-    @GetMoney(EMoney.WithNDS)
+    @GetMoney(EMoney.WITH_NDS)
     public int getMoneyNDS() {
          money-=18;
         return money;

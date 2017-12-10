@@ -1,7 +1,7 @@
-package game;
+package com.github.spardarus.myzoo.game;
 
-import admin.Administrator;
-import paddock.Paddock;
+import com.github.spardarus.myzoo.admin.Administrator;
+import com.github.spardarus.myzoo.paddock.Paddock;
 
 public class Report {
     public static void getReportOnePaddock(Paddock paddock){

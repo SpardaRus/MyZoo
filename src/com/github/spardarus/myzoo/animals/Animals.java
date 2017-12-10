@@ -1,6 +1,6 @@
-package animals;
+package com.github.spardarus.myzoo.animals;
 
-import needs.foods.Foods;
+import com.github.spardarus.myzoo.foods.Foods;
 
 public class Animals {
      public Animals(int needFood,double ratioVisitors,int cost) {

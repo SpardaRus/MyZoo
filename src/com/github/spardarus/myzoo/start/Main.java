@@ -1,6 +1,6 @@
-package start;
+package com.github.spardarus.myzoo.start;
 
-import game.Go;
+import com.github.spardarus.myzoo.game.Go;
 
 public class Main {
     public static void main(String[] args) {

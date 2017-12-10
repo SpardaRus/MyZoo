@@ -1,4 +1,4 @@
-package animals;
+package com.github.spardarus.myzoo.animals;
 public enum EnumAnimals {
     ELEPHANT(30,1.9,90),
     TIGER(25,2.1,110),
